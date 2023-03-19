@@ -1,5 +1,8 @@
 plugins {
     id 'java'
+    id 'jacoco'
+    id 'checkstyle'
+    id 'application'
 }
 
 group 'hexlet.code'
@@ -20,4 +23,14 @@ test {
 
 compileJava {
     options.release
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+application {
+    mainClass = 'hexlet.code.App'
 }

@@ -1,5 +1,5 @@
 run-dist:
-	@./build/install/app/bin/app testFile1.json testFile2.json
+	@./build/install/app/bin/app
 
 lint:
 	@./gradlew checkstyleMain checkstyleTest
