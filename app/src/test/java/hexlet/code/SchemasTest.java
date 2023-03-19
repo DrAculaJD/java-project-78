@@ -34,5 +34,11 @@ public class SchemasTest {
 
         var expected4 = schema.isValid("what does the fox say"); // false
         assertThat(expected4).isFalse();
+
+        schema = v.string();
+        var expected5 = schema.minLength(8).isValid("what does the fox say");
+        assertThat(expected5).isTrue();
+        var expected6 = schema.isValid("what");
+        assertThat(expected6).isFalse();
     }
 }
