@@ -28,26 +28,32 @@ public class StringSchema {
         return !result.contains(false);
     }
 
-    public void required() {
+    public StringSchema required() {
         this.notEmptyTest = true;
+
+        return this;
     }
 
-    public void minLength(int length) {
+    public StringSchema minLength(int length) {
         this.minLengthTest = length;
         this.minLengtsStatus = true;
+
+        return this;
     }
 
-    public void contains(String substring) {
+    public StringSchema contains(String substring) {
         this.containsTest = substring;
         this.contaisStatus = true;
+
+        return this;
     }
 
     private boolean requiredCheck(String testString) {
         if (notEmptyTest) {
-            if (testString ==null) {
+            if (testString == null) {
                 return false;
             }
-            return testString.isEmpty();
+            return testString.length() > 0;
         }
 
         return true;
