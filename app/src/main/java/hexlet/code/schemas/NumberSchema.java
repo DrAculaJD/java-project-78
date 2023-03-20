@@ -3,7 +3,7 @@ package hexlet.code.schemas;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NumberSchema {
+public class NumberSchema extends BaseSchema{
 
     private boolean requiredStatus = false;
     private boolean positiveStatus = false;
@@ -14,7 +14,7 @@ public class NumberSchema {
     public boolean isValid(Object testObject) {
         List<Boolean> result = new ArrayList<>();
 
-        if (!(testObject instanceof Integer)) {
+        if (!(testObject instanceof Integer) && !(testObject == null)) {
             return false;
         }
 
@@ -22,7 +22,12 @@ public class NumberSchema {
         result.add(positiveCheck(testObject));
         result.add(rangeCheck(testObject));
 
+        System.out.println(result);
         return !result.contains(false);
+    }
+
+    private boolean validNull() {
+        return !requiredStatus;
     }
 
     public NumberSchema required() {
@@ -46,10 +51,11 @@ public class NumberSchema {
     }
 
     private boolean positiveCheck(Object testObject) {
-        final int testNumber = (int) testObject;
-
         if (positiveStatus) {
-            return testNumber > 0;
+            if (testObject == null) {
+                return validNull();
+            }
+            return (int) testObject > 0;
         }
 
         return true;
@@ -64,11 +70,14 @@ public class NumberSchema {
     }
 
     private boolean rangeCheck(Object testObject) {
-        final int testNumber = (int) testObject;
-        final boolean minCheck = testNumber >= rangeMin;
-        final boolean maxCheck = testNumber <= rangeMax;
 
         if (rangeStatus) {
+            if (testObject == null) {
+                return validNull();
+            }
+            final int testNumber = (int) testObject;
+            final boolean minCheck = testNumber >= rangeMin;
+            final boolean maxCheck = testNumber <= rangeMax;
             return minCheck && maxCheck;
         }
 

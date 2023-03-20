@@ -1,8 +1,7 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
-import java.util.List;
+public abstract class BaseSchema {
 
-public class BaseSchema {
+    public abstract boolean isValid(Object testObject);
 
 }

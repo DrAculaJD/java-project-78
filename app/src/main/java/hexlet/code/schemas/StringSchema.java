@@ -18,12 +18,13 @@ public class StringSchema {
             return false;
         }
 
-        final String testString = (String) testObject;
+        final String testString = testObject.toString();
 
         result.add(requiredCheck(testString));
         result.add(sizeCheck(testString));
         result.add(contaisCheck(testString));
 
+        System.out.println(result);
         return !result.contains(false);
     }
 

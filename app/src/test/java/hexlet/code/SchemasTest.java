@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,11 +17,10 @@ public class SchemasTest {
         assertThat(schema.isValid("")).isTrue();
         assertThat(schema.isValid(null)).isTrue();
 
-        schema.required();
+        var expected = schema.required().isValid("what does the fox say");
+        assertThat(expected).isTrue();
 
-        assertThat(schema.isValid("what does the fox say")).isTrue();
         assertThat(schema.isValid("hexlet")).isTrue();
-
         assertThat(schema.isValid(null)).isFalse();
         assertThat(schema.isValid(5)).isFalse();
         assertThat(schema.isValid("")).isFalse();
@@ -40,5 +40,30 @@ public class SchemasTest {
         assertThat(expected5).isTrue();
         var expected6 = schema.isValid("what");
         assertThat(expected6).isFalse();
+    }
+
+    @Test
+    public void numberSchemaTest() {
+        Validator v = new Validator();
+
+        NumberSchema schema = v.number();
+
+        assertThat(schema.isValid(null)).isTrue();
+        assertThat(schema.positive().isValid(null)).isTrue();
+
+        var expected = schema.required().isValid(null);
+        assertThat(expected).isFalse();
+
+        assertThat(schema.isValid(10)).isTrue();
+        assertThat(schema.isValid("5")).isFalse();
+        assertThat(schema.isValid(-10)).isFalse();
+        assertThat(schema.isValid(0)).isFalse();
+
+        var expected1 = schema.range(5, 10).isValid(5);
+        assertThat(expected1).isTrue();
+
+        assertThat(schema.isValid(10)).isTrue();
+        assertThat(schema.isValid(4)).isFalse();
+        assertThat(schema.isValid(11)).isFalse();
     }
 }
