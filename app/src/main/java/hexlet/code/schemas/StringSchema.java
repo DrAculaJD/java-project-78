@@ -5,11 +5,11 @@ import java.util.List;
 
 public class StringSchema extends BaseSchema {
 
-    boolean notEmptyTest = false;
-    int minLengthTest;
-    boolean minLengtsStatus = false;
-    String containsTest;
-    boolean contaisStatus = false;
+    private boolean notEmptyTest = false;
+    private int minLengthTest;
+    private boolean minLengtsStatus = false;
+    private String containsTest;
+    private boolean contaisStatus = false;
 
     public boolean isValid(Object testObject) {
         List<Boolean> result = new ArrayList<>();
