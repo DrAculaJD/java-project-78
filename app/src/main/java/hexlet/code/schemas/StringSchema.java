@@ -14,7 +14,7 @@ public class StringSchema {
     public boolean isValid(Object testObject) {
         List<Boolean> result = new ArrayList<>();
 
-        if (testObject instanceof Integer) {
+        if (!(testObject instanceof String)) {
             return false;
         }
 
@@ -24,7 +24,6 @@ public class StringSchema {
         result.add(sizeCheck(testString));
         result.add(contaisCheck(testString));
 
-        //System.out.println(result);
         return !result.contains(false);
     }
 
