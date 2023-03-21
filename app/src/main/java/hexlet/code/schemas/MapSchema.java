@@ -75,6 +75,7 @@ public final class MapSchema extends BaseSchema {
                     result.add(shapeMap.get(key).isValid(map.get(key)));
                 }
             }
+
         }
         return !result.contains(false);
     }
