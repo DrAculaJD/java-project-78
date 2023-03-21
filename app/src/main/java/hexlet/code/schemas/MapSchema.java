@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class MapSchema extends BaseSchema {
+public final class MapSchema extends BaseSchema {
 
     private boolean requiredStatus = false;
     private boolean sizeofStatus = false;
